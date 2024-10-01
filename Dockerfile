@@ -7,6 +7,10 @@ WORKDIR /usr/src/app
 # Copy the requirements file first, to cache dependencies
 COPY requirements.txt .
 
+# Upgrade pip
+RUN pip install --upgrade pip
+
+
 # Install any dependencies specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
