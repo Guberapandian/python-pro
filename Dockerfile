@@ -1,16 +1,17 @@
-# Use an official Python runtime as the base image
+# Use an official Python runtime as a base image
 FROM python:3.9-slim
 
-# Set the working directory inside the container
-WORKDIR /app
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy the requirements file first, to cache dependencies
+COPY requirements.txt .
 
-# Install any necessary dependencies from requirements.txt (if you have one)
-# RUN pip install --no-cache-dir -r requirements.txt
+# Install any dependencies specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# If your script doesn't have external dependencies, skip the previous step
+# Copy the rest of the application code to the container
+COPY . .
 
-# Set the entry point to the Python script
-CMD ["python", "./color_alert.py"]
+# Define the default command to run the Python script
+CMD ["python", "color_alert.py"]  # Replace with your actual Python script name
