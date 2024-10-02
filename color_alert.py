@@ -23,14 +23,13 @@ def color_alert():
 
         if overdue:
             id_background_color = 'fa00bc'
-            # Display the ID but change the background color if overdue
-            id_no = id_no  # Keep the ID visible
+            id_no = ''  # Hide ID for overdue
 
         return render_template_string("""
             <h1>Details</h1>
             <p>Name: {{ name }}</p>
             <p>Due Date: {{ due_date }} ({{ 'Overdue' if overdue else 'Upcoming' }})</p>
-            <p>ID: <span style="color:#{{ id_text_color }}; background-color:#{{ id_background_color }};">{{ id_no }}</span></p>
+            <p>ID: <span style="color:#{{ id_text_color }}; background-color:#{{ id_background_color }};">{{ id_no if not overdue else '' }}</span></p>
             <form action="/" method="GET">
                 <button type="submit">Back</button>
             </form>
