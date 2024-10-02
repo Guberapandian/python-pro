@@ -33,7 +33,7 @@ def color_alert():
             <h1>Details</h1>
             <p>Name: {{ name }}</p>
             <p>Due Date: {{ due_date }} ({{ 'Overdue' if overdue else 'Upcoming' }})</p>
-            <p>ID: <span style="color:#{{ id_text_color }}; background-color:#{{ id_background_color }}; padding: 15px; display: inline-block; width: 100px;">{{ ' ' if overdue else id_no }}</span></p>
+            <p>ID: <span style="color:#{{ id_text_color }}; background-color:#{{ id_background_color }}; padding: 10px; display: inline-block; width: 100px;">{{ ' ' if overdue else id_no }}</span></p>
             <form action="/" method="GET">
                 <button type="submit">Back</button>
             </form>
