@@ -17,5 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code to the container
 COPY . .
 
+RUN chmod +x color_alert.py
+
 # Define the default command to run the Python script
 CMD python3 color_alert.py  # Replace with your actual Python script name
