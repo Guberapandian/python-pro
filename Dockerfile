@@ -10,6 +10,7 @@ COPY requirements.txt .
 # Upgrade pip
 RUN pip install --upgrade pip
 
+RUN pip install flask
 
 # Install any dependencies specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
