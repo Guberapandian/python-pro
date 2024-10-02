@@ -23,26 +23,29 @@ def color_alert():
 
         if overdue:
             id_background_color = 'fa00bc'
-            id_no = ''  # Hide ID for overdue
+            # Display the ID but change the background color if overdue
+            id_no = id_no  # Keep the ID visible
 
         return render_template_string("""
             <h1>Details</h1>
-            <p>Name: {{name}}</p>
-            <p>Due Date: {{due_date}} ({{'Overdue' if overdue else 'Upcoming'}})</p>
-            <p>ID: <span style="color:#{{id_text_color}}; background-color:#{{id_background_color}};">{{id_no}}</span></p>
-            """, name=name, due_date=due_date, overdue=overdue, id_no=id_no, id_text_color=id_text_color, id_background_color=id_background_color)
-    
+            <p>Name: {{ name }}</p>
+            <p>Due Date: {{ due_date }} ({{ 'Overdue' if overdue else 'Upcoming' }})</p>
+            <p>ID: <span style="color:#{{ id_text_color }}; background-color:#{{ id_background_color }};">{{ id_no }}</span></p>
+            <form action="/" method="GET">
+                <button type="submit">Back</button>
+            </form>
+        """, name=name, due_date=due_date, overdue=overdue, id_no=id_no, id_text_color=id_text_color, id_background_color=id_background_color)
+
     return '''
         <form method="POST">
-            Name: <input type="text" name="name"><br>
-            ID No: <input type="text" name="id_no"><br>
-            ID Text Colour: <input type="text" name="id_text_color"><br>
-            ID Background Colour: <input type="text" name="id_background_color"><br>
-            Due Date (YYYY-MM-DD): <input type="text" name="due_date"><br>
+            Name: <input type="text" name="name" required><br>
+            ID No: <input type="text" name="id_no" required><br>
+            ID Text Colour: <input type="text" name="id_text_color" required><br>
+            ID Background Colour: <input type="text" name="id_background_color" required><br>
+            Due Date (YYYY-MM-DD): <input type="text" name="due_date" required><br>
             <input type="submit">
         </form>
     '''
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
-
