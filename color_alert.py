@@ -27,7 +27,7 @@ def color_alert():
         # Set background color for overdue cases and hide ID number
         if overdue:
             id_background_color = 'fa00bc'  # Set to alert color
-            id_no = 'Overdue!'  # Show a message instead of the ID number
+            id_no = ''  # Hide ID for overdue
 
         return render_template_string("""
             <h1>Details</h1>
