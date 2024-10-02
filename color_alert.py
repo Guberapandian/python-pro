@@ -4,8 +4,11 @@ from datetime import datetime
 app = Flask(__name__)
 
 def get_color_hex(color_name):
-    colors = {"black": "000000", "red": "ff0000", "green": "00ff00", "yellow": "ffff00", "blue": "0000ff", 
-              "magenta": "ff00ff", "cyan": "00ffff", "white": "ffffff"}
+    colors = {
+        "black": "000000", "red": "ff0000", "green": "00ff00",
+        "yellow": "ffff00", "blue": "0000ff", "magenta": "ff00ff",
+        "cyan": "00ffff", "white": "ffffff"
+    }
     return colors.get(color_name.lower(), color_name)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -21,19 +24,21 @@ def color_alert():
         due_date_obj = datetime.strptime(due_date, '%Y-%m-%d').date()
         overdue = due_date_obj < today
 
+        # Set background color for overdue cases and hide ID number
         if overdue:
-            id_background_color = 'fa00bc'
-            id_no = ''  # Hide ID for overdue
+            id_background_color = 'fa00bc'  # Set to alert color
+            id_no = 'Overdue!'  # Show a message instead of the ID number
 
         return render_template_string("""
             <h1>Details</h1>
             <p>Name: {{ name }}</p>
             <p>Due Date: {{ due_date }} ({{ 'Overdue' if overdue else 'Upcoming' }})</p>
-            <p>ID: <span style="color:#{{ id_text_color }}; background-color:#{{ id_background_color }};">{{ id_no if not overdue else '' }}</span></p>
+            <p>ID: <span style="color:#{{ id_text_color }}; background-color:#{{ id_background_color }};">{{ id_no }}</span></p>
             <form action="/" method="GET">
                 <button type="submit">Back</button>
             </form>
-        """, name=name, due_date=due_date, overdue=overdue, id_no=id_no, id_text_color=id_text_color, id_background_color=id_background_color)
+        """, name=name, due_date=due_date, overdue=overdue, id_no=id_no, 
+        id_text_color=id_text_color, id_background_color=id_background_color)
 
     return '''
         <form method="POST">
