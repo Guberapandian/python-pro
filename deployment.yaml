@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-pro
+  labels:
+    app: python-pro
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: python-pro
+  template:
+    metadata:
+      labels:
+        app: python-pro
+    spec:
+      containers:
+        - name: python-pro
+          image: 762233769537.dkr.ecr.ap-southeast-1.amazonaws.com/python-pro:latest # Replace with your image tag
+          ports:
+            - containerPort: 80
