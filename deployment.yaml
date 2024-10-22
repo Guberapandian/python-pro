@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: python-pro
-          image: 762233769537.dkr.ecr.ap-southeast-1.amazonaws.com/python-pro:latest # Replace with your image tag
+          image: 762233769537.dkr.ecr.ap-southeast-1.amazonaws.com/python-pro # Replace with your image tag
           ports:
             - containerPort: 80
